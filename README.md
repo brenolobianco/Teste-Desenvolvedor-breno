@@ -9,13 +9,12 @@ Você deverá criar um fork deste projeto, e desenvolver em cima do seu fork. Us
 
 ## As Instruções 
 
-O desafio consiste na implementação de um CRM básico utilizando o framework PHP Laravel (versão 8), um banco de dados relacional MySQL e o frontend em Vue3. No backend deve ser feito uma API utilizando o Laravel Sanctum como método de autenticação e o frontend em Vue consumindo esta API. No repositório você verá duas pastas, "backend" e "frontend", dessa forma esperamos que o frontend feito em Vue fique em sua respectiva pasta assim como o backend.
+O desafio consiste na implementação de um sistema de cadastramento básico utilizando o framework PHP Laravel (versão 8), um banco de dados relacional MySQL e o frontend em Vue3. No backend deve ser feito uma API utilizando o Laravel Sanctum como método de autenticação e o frontend em Vue consumindo esta API. No repositório você verá duas pastas, "backend" e "frontend", dessa forma esperamos que o frontend feito em Vue fique em sua respectiva pasta assim como o backend.
 
 Veja as principais estruturas de dados
 
 - Usuário para login no sistema
 - CRUD de contatos (nome, email, telefone, foto)
-- CRUD de empresas (nome, email, telefone, foto)
 - Gerar relatório de contatos adicionados baseado em meses
 - Criar padronização de elemetos de Interface (Componentes reutilizáveis)
 
@@ -40,10 +39,10 @@ Esperamos que você faça uso das principais tecnologias embarcadas no Laravel e
 ## Processo Principal
  
  1. Usuário deverá poder fazer login no sistema
- 2. Usuário poderá cadastrar um contato/empresa
- 3. Usuário poderá editar um contato/empresa
- 4. Usuário poderá excluir um contato/empresa
- 5. Usuário poderá gerar um relatório de contatos adicionados baseado em meses (Ex: Clientes adicionados no mês de Setembro)
+ 2. Usuário poderá cadastrar um contato
+ 3. Usuário poderá editar um contato
+ 4. Usuário poderá excluir um contato
+ 5. Usuário poderá gerar um relatório básico de contatos adicionados baseado em meses (Ex: Contatos adicionados no mês de Setembro)
 
 
 #### O que nós não gostaríamos
