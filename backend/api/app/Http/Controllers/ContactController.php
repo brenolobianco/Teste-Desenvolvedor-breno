@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Contact;
 use Illuminate\Http\Request;
+
 
 class ContactController extends Controller
 {
@@ -34,4 +35,33 @@ class ContactController extends Controller
             ]);
             return Contact::create($request -> all());
     }
+    /**
+     * Atualiza um contato especifico.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $contact = Contact::findOrFail($id);
+
+        $contact->update($request->all());
+
+        return $contact;
+
+    }
+
+    /**
+     * Remove um contato especifico.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        return [Contact::destroy($id),'message' => 'Contato deletado com sucesso.'];
+    }
 }
+
+

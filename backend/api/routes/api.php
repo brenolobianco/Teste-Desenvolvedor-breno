@@ -21,8 +21,12 @@ Route::get('/contacts',[ContactController::class,'index']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class,'login']);
 
+
 // Grupo de rotas que exigem autentiação
 Route::group(['middleware' => ['auth:sanctum']], function() {
-    Route::post('/contacts',[ContactController::class,'store']);
-    Route::post('/logout', [AuthController::class, 'logout']);  
+Route::post('/contacts',[ContactController::class,'store']);
+Route::patch('/contacts/{id}',[ContactController::class,'update']);
+Route::delete('/contacts/{id}', [ContactController::class,'destroy']);
+Route::post('/logout', [AuthController::class, 'logout']);
+
 });
