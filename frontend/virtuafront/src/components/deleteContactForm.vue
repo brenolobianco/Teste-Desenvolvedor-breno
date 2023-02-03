@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="deletar-box">
-      <h1>Deletar contato</h1>
+      <h2>Deletar contato</h2>
       <div class="listar-box">
-        <h1>listar contato</h1>
+        <h2>listar contato</h2>
         <ul>
           <li>dsa</li>
         </ul>
@@ -18,10 +18,13 @@
   width: 300px;
   height: 400px;
 }
+.deletar-box h2{
+  color: black;
+}
 </style>
 <script>
 export default {
-  name: "DeleteContactForm",
+  name: "deleteContactForm",
   data() {
     return {};
   },

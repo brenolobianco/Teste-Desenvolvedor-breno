@@ -2,7 +2,7 @@
  
     <div >
       
-        <form class="contact-form" method="POST" @submit="updateContact">
+        <form class="edit-contact-form" method="POST" @submit="updateContact">
         <h2>Editar contato</h2>
        
         <input type="text" placeholder="Nome" />Nome
@@ -16,7 +16,7 @@
   </div>
 </template>
 <style>
-.contact-form {
+.edit-contact-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,12 +25,13 @@
   height: 400px;
   background: rgb(249, 247, 244);
 }
-.contact-form input {
+.edit-contact-form input {
   width: 250px;
   height: 40px;
-  border: 2px solid black;
+  border: 1px solid black;
+  border-radius:5px ;
 }
-.contact-form h2 {
+.edit-contact-form h2 {
   color: black;
   font-size: 25px;
 }

@@ -17,7 +17,7 @@
   justify-content: center;
   align-items: center;
   width: 250px;
-  height: 300px;
+  height: 400px;
   background: rgb(249, 247, 244);
 }
 .contact-form input {

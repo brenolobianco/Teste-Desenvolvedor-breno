@@ -7,7 +7,7 @@ import { RouterLink, RouterView } from "vue-router";
   <header>
   
 
-    <div class="wrapper">
+    <div>
       <nav>
         <!-- <RouterLink to="/cadastro"></RouterLink>
         <RouterLink to="/dashboard">Dashboard</RouterLink>
