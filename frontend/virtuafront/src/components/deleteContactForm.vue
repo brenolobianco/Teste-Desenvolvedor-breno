@@ -2,11 +2,6 @@
   <div>
     <div class="deletar-box">
       <h1>Deletar contato</h1>
-      <form>
-        <select name="" id="">
-          <option value="sda">sda</option>
-        </select>
-      </form>
       <div class="listar-box">
         <h1>listar contato</h1>
         <ul>
@@ -19,9 +14,9 @@
 
 <style>
 .deletar-box {
-  background: rgb(181, 130, 130);
+  background: rgb(249, 247, 244);
   width: 300px;
-  height: 200px;
+  height: 400px;
 }
 </style>
 <script>
@@ -31,9 +26,19 @@ export default {
     return {};
   },
   methods: {
-    
+    async getContacts() {
+      const req = await fetch("http://localhost:8000/api/contacts");
+      const data = await req.json();
+      this.contacts = data;
+    },
+    async deleteContact(id) {
+      const req = await fetch(`http://localhost:8000/api/contacts/${id}`, {
+        method: "DELETE",
+      });
+      console.log(id);
+      const res = await req.json();
+      
+    },
   },
 };
 </script>
-
-
