@@ -44,7 +44,7 @@
 6. run shell: php artisan serve
 
 ## Especificações:
-# Rotas que precisa de autentiação(usuario logado):
+# Rotas que precisam de autenticação(usuario logado):
 - criaçao de contato
 - atualizaçao de contato
 - deleção de contato
