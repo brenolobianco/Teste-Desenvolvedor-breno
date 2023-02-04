@@ -4,12 +4,13 @@
       <RouterLink class="btn-ircadastro" to="/">Login</RouterLink>
     </header>
     <div class="container">
-    <form class="cadastro-form">
+    <form class="cadastro-form" method="POST" @submit="createUser">
       <h2>Cadastro</h2>
      
-      <input type="text" placeholder="nome" />Nome <input placeholder="email" type="tel" />Telefone
-      <input type="text" placeholder="foto" />Foto <input placeholder="email" type="email" />Email
-      <button class="submit-btn" type="submit" value="cadastrar" >Cadastrar</button>
+      <input type="text" placeholder="nome" v-model="nome" />Nome 
+       <input placeholder="email" v-model="email" type="email" />Email
+       <input placeholder="password" v-model="password" type="password" />password
+      <input class="submit-btn" type="submit" value="cadastrar" >Cadastrar
     </form>
   </div>
   </div>
@@ -61,3 +62,36 @@ border: 1px solid black;
 background: rgb(218, 138, 18);
 }
 </style>
+<script>
+export default {
+  name: "Dashboard",
+  data() {
+    return {
+      
+    };
+  },
+  methods: {
+    async createUser(e) {
+      e.preventDefault(); 
+      const data = {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+      };
+      const dataJson = JSON.stringify(data);
+      console.log(dataJson)
+      const req = await fetch("http://localhost:8000/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept":"application/json"},
+        body: dataJson,
+      });
+      console.log
+      const res = await req.json();
+      console.log(res);
+
+   
+     },
+  },
+};
+</script>
+

@@ -2,15 +2,16 @@
   <div>
     <form class="contact-form" method="POST" @submit="createContact">
       <h2>Cadastrar contato</h2>
-      <input type="text" placeholder="Nome" />Nome
-      <input placeholder="telefone" type="tel" />Telefone
-      <input type="text" placeholder="foto" />Foto
-      <input type="email" placeholder="Email" />Email
-      <input class="submit-btn" type="submit" value="Criar Contato!" />Criar Contato
+      <input type="text" placeholder="Nome" v-model="name"/>Nome
+      <input placeholder="telefone" type="tel" v-model="contact"/>Telefone
+      <input type="text" placeholder="foto" v-model="image" />Foto
+      <input type="email" placeholder="Email" v-model="email" />Email
+      <input class="submit-btn" type="submit"  value="Criar Contato!" />Criar Contato
     </form>
   </div>
 </template>
 <style>
+
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -40,30 +41,34 @@ form .submit-btn {
 export default {
   name: "CreateContactForm",
   data() {
-    return {};
+    return {
+      
+    };
   },
   methods: {
     async createContact(e) {
-      e.preventDefault();
+      e.preventDefault(); 
       const data = {
-        nome: this.nome,
-        telefone: this.telefone,
+        name: this.name,
+        contact: this.contact,
         email: this.email,
-        image: this.image,
+        image: this.image
       };
       const dataJson = JSON.stringify(data);
+      console.log(dataJson)
       const req = await fetch("http://localhost:8000/api/contacts", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "Accept":"application/json"},
         body: dataJson,
       });
+      console.log
       const res = await req.json();
       console.log(res);
 
       // clear message
-      setTimeout(() => (this.msg = ""), 3000);
+      setTimeout(() => (this.msg = ""), 100000);
       // limpar campos
-      this.nome = "";
+      this.name = "";
       this.telefone = "";
       this.email = "";
       this.imagem = "";

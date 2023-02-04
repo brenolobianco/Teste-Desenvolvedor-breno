@@ -4,7 +4,6 @@
       
         <form class="edit-contact-form" method="POST" @submit="updateContact">
         <h2>Editar contato</h2>
-       
         <input type="text" placeholder="Nome" />Nome
         <input placeholder="telefone" type="tel" />Telefone
         <input type="text" placeholder="foto" />Foto
