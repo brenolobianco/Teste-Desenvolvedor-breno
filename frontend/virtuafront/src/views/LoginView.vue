@@ -101,7 +101,7 @@ export default {
         });
         
         const res = await req.json();
-        localStorage.setItem("@UserLogin:token",res.token);
+        localStorage.setItem("@UserToken",res.token);
         this.$router.replace(this.$route.query.redirect || '/dashboard')
         
         console.log("Login realizado");

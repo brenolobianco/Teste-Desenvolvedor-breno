@@ -7,7 +7,9 @@
           <h3>Nome:{{ contact.name }}</h3>
           <h4>Telefone:{{ contact.contact }}</h4>
           <h5>Email: {{ contact.email }}</h5>
-          
+          <button class="delete-btn" @click="deleteContact(contact.id)">
+            Deletar
+          </button>
         </li>
       </ul>
     </div>
@@ -19,18 +21,22 @@
   background: rgb(249, 247, 244);
   width: 300px;
   height: 400px;
-  overflow-y:auto;
+  overflow-y: auto;
+}
+.delete-btn {
+  cursor: pointer;
+  color: black;
 }
 
-.listar-contact-box ul li{
-    color:black;
-    border: 1px solid black;
-    height: 100px;
-    width: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.listar-contact-box ul li {
+  color: black;
+  border: 1px solid black;
+  height: 100px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>
 
@@ -43,27 +49,29 @@ export default {
       contacts: {},
     };
   },
-  created() {
-      this.getContacts();
-    },
+
   methods: {
     async getContacts() {
       axios
         .get("http://localhost:8000/api/contacts")
         .then((res) => {
-          
-            this.contacts = res.data;
-            
-
+          this.contacts = res.data;
         })
         .catch((error) => {
           console.log(error);
         });
     },
 
-   
-  
+    async deleteContact(id) {
+      const req = await fetch(`http://localhost:8000/api/contacts/${id}`, {
+        method: "DELETE",
+      });
+      console.log("Contado deletado");
+      const res = await req.json();
+    },
   },
-
+  mounted() {
+    this.getContacts();
+  },
 };
 </script>

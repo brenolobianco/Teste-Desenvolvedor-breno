@@ -6,7 +6,7 @@
     <div class="dashboard">
       <CreateContactForm />
       <EditContactForm />
-      <DeleteContactForm />
+      
       <ListContact />
     </div>
   </div>
@@ -15,7 +15,6 @@
 <style></style>
 <script>
 import CreateContactForm from "../components/CreateContactForm.vue";
-import DeleteContactForm from "../components/deleteContactForm.vue";
 import EditContactForm from "../components/EditContactForm.vue";
 import ListContact from "../components/ListContact.vue";
 
@@ -24,7 +23,7 @@ export default {
   components: {
     EditContactForm,
     CreateContactForm,
-    DeleteContactForm,
+   
     ListContact,
   },
 };
@@ -45,4 +44,3 @@ export default {
   gap: 30px;
 }
 </style>
-

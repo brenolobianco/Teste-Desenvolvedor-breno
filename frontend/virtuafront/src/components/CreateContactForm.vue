@@ -2,16 +2,16 @@
   <div>
     <form class="contact-form" method="POST" @submit="createContact">
       <h2>Cadastrar contato</h2>
-      <input type="text" placeholder="Nome" v-model="name"/>Nome
-      <input placeholder="telefone" type="tel" v-model="contact"/>Telefone
+      <input type="text" placeholder="Nome" v-model="name" />Nome
+      <input placeholder="telefone" type="tel" v-model="contact" />Telefone
       <input type="text" placeholder="foto" v-model="image" />Foto
       <input type="email" placeholder="Email" v-model="email" />Email
-      <input class="submit-btn" type="submit"  value="Criar Contato!" />Criar Contato
+      <input class="submit-btn" type="submit" value="Criar Contato!" />Criar
+      Contato
     </form>
   </div>
 </template>
 <style>
-
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -41,31 +41,31 @@ form .submit-btn {
 export default {
   name: "CreateContactForm",
   data() {
-    return {
-      
-    };
+    return {};
   },
   methods: {
     async createContact(e) {
-      e.preventDefault(); 
+      e.preventDefault();
       const data = {
         name: this.name,
         contact: this.contact,
         email: this.email,
-        image: this.image
+        image: this.image,
       };
       const dataJson = JSON.stringify(data);
-      console.log(dataJson)
+      console.log(dataJson);
+      
       const req = await fetch("http://localhost:8000/api/contacts", {
         method: "POST",
-        headers: { "Content-Type": "application/json", "Accept":"application/json"},
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer" + localStorage.getItem("@UserToken")
+        },
         body: dataJson,
       });
-      console.log
+      
       const res = await req.json();
       console.log(res);
-
-
     },
   },
 };
