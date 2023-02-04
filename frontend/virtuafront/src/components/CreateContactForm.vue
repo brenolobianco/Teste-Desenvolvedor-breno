@@ -65,13 +65,7 @@ export default {
       const res = await req.json();
       console.log(res);
 
-      // clear message
-      setTimeout(() => (this.msg = ""), 100000);
-      // limpar campos
-      this.name = "";
-      this.telefone = "";
-      this.email = "";
-      this.imagem = "";
+
     },
   },
 };

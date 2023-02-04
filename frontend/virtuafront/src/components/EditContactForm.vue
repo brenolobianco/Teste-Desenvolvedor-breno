@@ -62,6 +62,7 @@ export default {
         headers: { "Content-Type": "application/json" },
         body: dataJson,
       });
+      auth.setToken(data.token);
       const res = await req.json();
       console.log(res);
     },
