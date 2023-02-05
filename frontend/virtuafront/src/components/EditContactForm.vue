@@ -1,38 +1,53 @@
 <template>
- 
-    <div >
-      
-        <form class="edit-contact-form" method="POST" @submit="updateContact">
-        <h2>Editar contato</h2>
-        <input type="text" placeholder="Nome" />Nome
-        <input placeholder="telefone" type="tel" />Telefone
-        <input type="text" placeholder="foto" />Foto
-        <input type="email" placeholder="Email" />Email
-        <input class="submit-btn" type="submit" value="Editar Contato!" />Editar
-        Contato
-      </form>
-    
+  <div class="edit-contact-box">
+    <form class="edit-contact-form"  >
+      <select
+        name="status"
+        class="status"
+        @submit="updateContact($event,contact.id)"
+      >
+        <option
+          :value="contact.name"
+          v-for="contact in contacts"
+          :key="contact.id"
+        >
+          {{ contact.name }}
+        </option>
+      </select>
+
+      <h2>Editar contato</h2>
+      <input type="text" placeholder="Nome" />Nome
+      <input placeholder="Telefone" type="tel" />Telefone
+      <input type="text" placeholder="Foto" />Foto
+      <input type="email" placeholder="Email" />Email
+      <input class="submit-btn" type="submit" value="Editar Contato!" />Editar
+      Contato
+    </form>
   </div>
 </template>
 <style>
+
 .edit-contact-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 300px;
-  height: 400px;
+  width: 350px;
+  height: 450px;
+  border-radius: 12px;
   background: rgb(249, 247, 244);
 }
 .edit-contact-form input {
   width: 250px;
-  height: 40px;
-  border: 1px solid black;
-  border-radius:5px ;
+  height: 50px;
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 15px;
 }
 .edit-contact-form h2 {
   color: black;
-  font-size: 25px;
+  font-size: 30px;
+  margin-bottom: 10px;
 }
 form .submit-btn {
   background: rgb(218, 138, 18);
@@ -42,22 +57,30 @@ form .submit-btn {
 }
 </style>
 <script>
+import axios from "axios";
 export default {
   name: "EditContactForm",
   data() {
-    return {};
+    return { contacts: {} };
   },
   methods: {
     async getContacts() {
-      const req = await fetch("http://localhost:8000/api/contacts");
-      const data = await req.json();
-      this.contacts = data;
+      axios
+        .get("http://localhost:8000/api/contacts")
+        .then((res) => {
+          this.contacts = res.data;
+          console.log(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     async updateContact(event, id) {
       const option = event.target.value;
+
       const dataJson = JSON.stringify({ status: option });
-      const req = await fetch(`http://localhost:3000/burgers/${id}`, {
+      const req = await fetch(`http://localhost:3000/contacts/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: dataJson,
@@ -66,6 +89,9 @@ export default {
       const res = await req.json();
       console.log(res);
     },
+  },
+  mounted() {
+    this.getContacts();
   },
 };
 </script>

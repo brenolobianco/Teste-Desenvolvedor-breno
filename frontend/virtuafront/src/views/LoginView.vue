@@ -1,22 +1,31 @@
 <template>
   <div>
     <header>
-      <RouterLink to="/cadastro">Cadastrar</RouterLink>
+      <RouterLink class="btn-ircadastro" to="/cadastro">Cadastrar</RouterLink>
     </header>
     <div class="container">
-      <form class="login-form" method="POST"  @submit="login">
+      <form class="login-form" method="POST" @submit="login">
         <h2>Login</h2>
-        <input type="email" placeholder="Digite seu Email"  v-model="email"/>Email
-        <input type="password" placeholder="Digite sua senha"  v-model="password"/>Password
-        <button type="submit" value="Login"></button>
+        <input
+          type="email"
+          placeholder="Digite seu Email"
+          v-model="email"
+        />Email
+        <input
+          type="password"
+          placeholder="Digite sua senha"
+          v-model="password"
+        />Password
+        <button type="submit" value="Login">Logar</button>
       </form>
     </div>
   </div>
 </template>
 
 <style>
-.header-box {
-  width: 100vw;
+header {
+  justify-content: flex-end;
+  margin-right: 40px;
   height: 80px;
   display: flex;
 }
@@ -37,14 +46,14 @@
   justify-content: center;
   align-items: center;
   width: 400px;
-  height: 300px;
+  height: 400px;
   border-radius: 8px;
   background: rgb(249, 247, 244);
 }
 .login-form h2 {
   color: black;
-  font-size: 25px;
-  margin-bottom: 15px;
+  margin-bottom: 40px;
+  font-size: 40px;
 }
 .submit-btn {
   width: 250px;
@@ -52,30 +61,37 @@
 }
 .login-form input {
   width: 320px;
-  height: 50px;
+  height: 55px;
   border-radius: 8px;
   padding: 15px;
-  font-size: 16px;
+  font-size: 19px;
 }
 .login-form button {
   background: rgb(218, 138, 18);
+  font-size: 19px;
   width: 120px;
   height: 50px;
-  height: 29px;
+
   color: white;
   cursor: pointer;
 }
 .btn-ircadastro {
-  font-size: 18px;
+  font-size: 26px;
   color: white;
   cursor: pointer;
-  width: 600px;
-  height: 10px;
+  width: 130px;
+  height: 50px;
   border: 1px solid black;
   background: rgb(218, 138, 18);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
 <script>
+
+
+
 export default {
   name: "Login",
   data() {
@@ -90,22 +106,26 @@ export default {
       };
       const dataJson = JSON.stringify(data);
       console.log(dataJson);
-      
-        const req = await fetch("http://localhost:8000/api/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-          },
-          body: dataJson,
-        });
+
+      const req = await fetch("http://localhost:8000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: dataJson,
+      });
+
+      const res = await req.json();
+      if (res.token !== undefined) {
+        localStorage.setItem("@UserToken", res.token);
+        this.$toast.success(`Login com sucesso`);
+        this.$router.replace(this.$route.query.redirect || "/dashboard");
         
-        const res = await req.json();
-        localStorage.setItem("@UserToken",res.token);
-        this.$router.replace(this.$route.query.redirect || '/dashboard')
-        
-        console.log("Login realizado");
-       
+      }else{
+        this.$toast.error(`Login não efetuado, verifique suas informaçoes`);
+      }
+
     
     },
   },
