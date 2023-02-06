@@ -6,15 +6,21 @@
     <div class="container">
       <form class="cadastro-form" method="POST" @submit="createUser">
         <h2>Cadastro</h2>
-
-        <input type="text" placeholder="nome" v-model="name" />Nome
-        <input placeholder="email" v-model="email" type="email" />Email
-        <input
-          placeholder="password"
-          v-model="password"
-          type="password"
-        />password
-        <button class="submit-btn" type="submit" value="cadastrar" > Cadastrar </button>
+        <label
+          ><input type="text" placeholder="Nome" v-model="name"
+        /></label>
+       
+        <label
+          >
+          <input placeholder="Email" v-model="email" type="email" /></label
+        >
+        <label>
+          <input placeholder="Senha" v-model="password" type="password"
+        /></label>
+       
+        <button type="submit" value="cadastrar">
+          Cadastrar
+        </button>
       </form>
     </div>
   </div>
@@ -26,14 +32,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 400px;
-  height: 450px;
+  width: 420px;
+  height: 520px;
+  gap: 25px;
   border-radius: 8px;
   background: rgb(249, 247, 244);
 }
 .cadastro-form h2 {
   color: black;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   font-size: 40px;
 }
 .cadastro-form input {
@@ -43,37 +50,40 @@
   font-size: 19px;
   padding: 15px;
 }
-.cadastro-form button {
-  background: rgb(218, 138, 18);
-  font-size: 19px;
-  width: 120px;
-  height: 50px;
-
-  color: white;
-  cursor: pointer;
- 
-}
-header {
-  height: 100px;
-  justify-content: flex-end;
-  
-}
-.btn-irlogin {
-  background: rgb(218, 138, 18);
+.cadastro-form button{
+  border-radius: 8px;
+  background: rgb(129, 85, 19);
   font-size: 26px;
-  width: 140px;
+  width: 150px;
   height: 50px;
-  
+  margin-top: 10px;
   color: white;
   cursor: pointer;
   display: flex;
   justify-content: center;
-  align-items:center ;
+  align-items: center;
+}
+header {
+  height: 100px;
+  justify-content: flex-end;
+}
+.btn-irlogin {
+  border-radius: 8px;
+  background: rgb(129, 85, 19);
+  font-size: 26px;
+  width: 150px;
+  height: 50px;
+  margin-top: 10px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
 <script>
 export default {
-  name: "Dashboard",
+  name: "Cadastro",
   data() {
     return {};
   },
@@ -96,8 +106,9 @@ export default {
         body: dataJson,
       });
       const res = await req.json();
-      this.$toast.success(`Cadastro realizado com sucesso`);
-      this.$router.replace(this.$route.query.redirect || '/')
+      //
+      this.$toast.success(`Contato criado com sucesso`);
+      this.$router.replace(this.$route.query.redirect || "/");
       console.log(res);
     },
   },

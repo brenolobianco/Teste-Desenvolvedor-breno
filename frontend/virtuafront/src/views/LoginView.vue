@@ -6,16 +6,13 @@
     <div class="container">
       <form class="login-form" method="POST" @submit="login">
         <h2>Login</h2>
-        <input
-          type="email"
-          placeholder="Digite seu Email"
-          v-model="email"
-        />Email
-        <input
-          type="password"
-          placeholder="Digite sua senha"
-          v-model="password"
-        />Password
+        <label
+          >
+          <input placeholder="Email" v-model="email" type="email" /></label
+        >
+        <label>
+          <input placeholder="Senha" v-model="password" type="password"
+        /></label>
         <button type="submit" value="Login">Logar</button>
       </form>
     </div>
@@ -45,20 +42,19 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 400px;
-  height: 400px;
+  width: 420px;
+  height: 380px;
+  gap: 25px;
   border-radius: 8px;
   background: rgb(249, 247, 244);
 }
+
 .login-form h2 {
   color: black;
   margin-bottom: 40px;
   font-size: 40px;
 }
-.submit-btn {
-  width: 250px;
-  height: 50px;
-}
+
 .login-form input {
   width: 320px;
   height: 55px;
@@ -67,31 +63,34 @@ header {
   font-size: 19px;
 }
 .login-form button {
-  background: rgb(218, 138, 18);
-  font-size: 19px;
-  width: 120px;
+  border-radius: 8px;
+  background: rgb(129, 85, 19);
+  font-size: 26px;
+  width: 150px;
   height: 50px;
-
+  margin-top: 10px;
   color: white;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .btn-ircadastro {
   font-size: 26px;
   color: white;
   cursor: pointer;
-  width: 130px;
+  width: 150px;
+  margin-top: 10px;
   height: 50px;
+  border-radius: 8px;
   border: 1px solid black;
-  background: rgb(218, 138, 18);
+  background: rgb(129, 85, 19);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 </style>
 <script>
-
-
-
 export default {
   name: "Login",
   data() {
@@ -105,8 +104,6 @@ export default {
         password: this.password,
       };
       const dataJson = JSON.stringify(data);
-      console.log(dataJson);
-
       const req = await fetch("http://localhost:8000/api/login", {
         method: "POST",
         headers: {
@@ -117,16 +114,15 @@ export default {
       });
 
       const res = await req.json();
+      // Verifica se o token gerado é valido, caso for, armazena o token no localstorage e redireciona para a dashboard
+      // Caso o token nao for gerado, significa que o login nao foi efetuado, logo um toast de erro de insucesso é mostrado ao usuario
       if (res.token !== undefined) {
         localStorage.setItem("@UserToken", res.token);
         this.$toast.success(`Login com sucesso`);
         this.$router.replace(this.$route.query.redirect || "/dashboard");
-        
-      }else{
+      } else {
         this.$toast.error(`Login não efetuado, verifique suas informaçoes`);
       }
-
-    
     },
   },
 };

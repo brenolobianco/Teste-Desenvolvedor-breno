@@ -11,8 +11,6 @@
       <EditContactForm />
       </div>
       <div class="list-box"> <ListContact /></div>
-      
-      
     </div>
   </div>
 </div>
@@ -24,18 +22,15 @@ import CreateContactForm from "../components/createContactForm.vue";
 import EditContactForm from "../components/EditContactForm.vue"
 import ListContact from "../components/ListContact.vue";
 
-
-  
-
 export default {
 
- 
   components: {
     EditContactForm,
     CreateContactForm,
     ListContact,
   },
   methods: {
+    // Função responsavel por fazer o logout na api, e limpa o localstorage. Em seguida, redireciona para o login
     async logout(e) {
       e.preventDefault();
       const token =localStorage.getItem("@UserToken");
@@ -55,12 +50,13 @@ export default {
 </script>
 <style>
 .container {
-  gap: 35px;
-  width: 90vw;
+  margin-right: 140px;
+  width: 80vw;
   font-weight: normal;
 }
 .form-box{
   display: flex;
+  justify-content: center;
   margin-top: 200px;
   gap: 100px;
 }
@@ -71,15 +67,16 @@ export default {
 }
 
 .btn-logout{
+  border-radius: 8px;
+  background: rgb(129, 85, 19);
   font-size: 26px;
+  width: 150px;
+  height: 50px;
+  margin-top: 10px;
   color: white;
   cursor: pointer;
-  width: 100px;
-  height: 30px;
-  border: 1px solid black;
-  background: rgb(218, 138, 18);
   display: flex;
   justify-content: center;
-  align-items:center ;
+  align-items: center;
 }
 </style>

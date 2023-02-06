@@ -1,10 +1,11 @@
 <template>
   <div>
     <div class="listar-contact-box">
-      <h1>lista de contatos</h1>
+      <h1>Lista de Contatos</h1>
+      <p>Ordenada por mes de criação</p>
 
       <ul>
-        <h3>Janeiro</h3>
+        <h2>Janeiro</h2>
         <li
           v-for="contact in contacts"
           :key="contact.name"
@@ -19,7 +20,7 @@
         </li>
       </ul>
       <ul>
-        <h3>Fevereiro</h3>
+        <h2>Fevereiro</h2>
         <li
           v-for="contact in contacts"
           :key="contact.name"
@@ -34,7 +35,7 @@
         </li>
       </ul>
       <ul>
-        <h3>Março</h3>
+        <h2>Março</h2>
         <li
           v-for="contact in contacts"
           :key="contact.name"
@@ -49,7 +50,7 @@
         </li>
       </ul>
       <ul>
-        <h3>Abril</h3>
+        <h2>Abril</h2>
         <li
           v-for="contact in contacts"
           :key="contact.name"
@@ -64,7 +65,7 @@
         </li>
       </ul>
       <ul>
-        <h3>Maio</h3>
+        <h2>Maio</h2>
         <li
           v-for="contact in contacts"
           :key="contact.name"
@@ -79,7 +80,7 @@
         </li>
       </ul>
       <ul>
-        <h3>Junho</h3>
+        <h2>Junho</h2>
         <li
           v-for="contact in contacts"
           :key="contact.name"
@@ -94,7 +95,7 @@
         </li>
       </ul>
       <ul>
-        <h3>Julho</h3>
+        <h2>Julho</h2>
         <li
           v-for="contact in contacts"
           :key="contact.name"
@@ -109,7 +110,7 @@
         </li>
       </ul>
       <ul>
-        <h3>Agosto</h3>
+        <h2>Agosto</h2>
         <li
           v-for="contact in contacts"
           :key="contact.name"
@@ -124,7 +125,7 @@
         </li>
       </ul>
       <ul>
-        <h3>Setembro</h3>
+        <h2>Setembro</h2>
         <li
           v-for="contact in contacts"
           :key="contact.name"
@@ -139,7 +140,7 @@
         </li>
       </ul>
       <ul>
-        <h3>Outubro</h3>
+        <h2>Outubro</h2>
         <li
           v-for="contact in contacts"
           :key="contact.name"
@@ -154,7 +155,7 @@
         </li>
       </ul>
       <ul>
-        <h3>Novembro</h3>
+        <h2>Novembro</h2>
         <li
           v-for="contact in contacts"
           :key="contact.name"
@@ -169,7 +170,7 @@
         </li>
       </ul>
       <ul>
-        <h3>Novembro</h3>
+        <h2>Novembro</h2>
         <li
           v-for="contact in contacts"
           :key="contact.name"
@@ -193,11 +194,21 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 50vw;
-  height: 450px;
+  width: 65vw;
+  height: 600px;
   border-radius: 12px;
   background: rgb(249, 247, 244);
   overflow: scroll;
+}
+.listar-contact-box h1 {
+  color: black;
+  margin-left: 40px;
+  font-size: 40px;
+}
+.listar-contact-box p {
+  color: black;
+  margin-left: 40px;
+  font-size: 20px;
 }
 .delete-btn {
   font-size: 15px;
@@ -210,15 +221,22 @@
 .listar-contact-box ul {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  border-top: 1px solid red;
 }
 .listar-contact-box ul li {
   color: black;
-  border: 1px solid black;
+  background: rgb(224, 224, 217);
   border-radius: 8px;
-  height: 50px;
-  width: 45vw;
-  padding: 10px 10px;
+  height: 100px;
+  width: 60vw;
+  padding: 0px 29px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -227,8 +245,13 @@
   font-size: 25px;
   color: black;
 }
-.listar-contact-box ul h3 {
+.listar-contact-box ul h2 {
   font-size: 25px;
+  width: 55vw;
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  align-items: center;
   color: black;
 }
 .listar-contact-box h4 {
@@ -249,38 +272,53 @@ export default {
       contacts: {},
     };
   },
-
-  created() {
+  mounted() {
     this.getContacts();
   },
+
+  watch: {
+    contacts: {
+      handler() {
+        this.getContacts();
+      },
+
+      immediate: true,
+    },
+  },
+ 
   methods: {
+    // Função responsavel por listar todas os contatos cadastrados
     async getContacts() {
       axios
         .get("http://localhost:8000/api/contacts")
         .then((res) => {
           this.contacts = res.data;
-
-          console.log(res.data);
         })
         .catch((error) => {
           console.log(error);
         });
     },
-
+    // Função responsavel por deletar um contato especifico, recebendo o id como parametro.
+    // È passado em seu header o token de us uario gerado no login, concedendo permissao para a requisiçao ser efetuada
     async deleteContact(id) {
       const token = localStorage.getItem("@UserToken");
-      const req = await fetch(`http://localhost:8000/api/contacts/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-          token: token,
-        },
-      });
-      console.log("Contado deletado");
-      const res = await req.json();
-      this.$toast.success(`Contato deletado com sucesso`);
+      try {
+        const req = await fetch(`http://localhost:8000/api/contacts/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+            token: token,
+          },
+        });
+        const res = await req.json();
+        this.$toast.success(`Contato deletado com sucesso`);
+      } catch (error) {
+        this.$toast.error(`Contato não deletado`);
+      }
     },
   },
+ 
+
 };
 </script>

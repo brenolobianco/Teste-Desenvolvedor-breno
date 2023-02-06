@@ -1,10 +1,10 @@
 <template>
   <div class="edit-contact-box">
-    <form class="edit-contact-form"  >
+    <form class="edit-contact-form">
       <select
         name="status"
         class="status"
-        @submit="updateContact($event,contact.id)"
+        @submit="updateContact($event, contact.id)"
       >
         <option
           :value="contact.name"
@@ -16,26 +16,42 @@
       </select>
 
       <h2>Editar contato</h2>
-      <input type="text" placeholder="Nome" />Nome
-      <input placeholder="Telefone" type="tel" />Telefone
-      <input type="text" placeholder="Foto" />Foto
-      <input type="email" placeholder="Email" />Email
+      <label
+        ><input type="text" placeholder="Nome" v-model="name" />
+      </label>
+      <label
+        ><input placeholder="telefone" type="tel" v-model="contact" />
+      </label>
+      <label
+        ><input type="text" placeholder="foto" v-model="foto" />
+      </label>
+      <label
+        > <input type="email" placeholder="Email" v-model="email"
+      /></label>
+
       <input class="submit-btn" type="submit" value="Editar Contato!" />Editar
       Contato
     </form>
   </div>
 </template>
 <style>
-
 .edit-contact-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 20px;
   width: 350px;
-  height: 450px;
+  height:500px;
   border-radius: 12px;
   background: rgb(249, 247, 244);
+}
+.edit-contact-form label {
+  display: flex;
+  flex-direction: column;
+  color: black;
+  justify-content: center;
+  align-items: center;
 }
 .edit-contact-form input {
   width: 250px;
@@ -50,10 +66,17 @@
   margin-bottom: 10px;
 }
 form .submit-btn {
-  background: rgb(218, 138, 18);
-  width: 130px;
-  height: 45px;
+  border-radius: 8px;
+  background: rgb(129, 85, 19);
+  font-size: 26px;
+  width: 200px;
+  height: 50px;
+  margin-top: 10px;
   color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
 <script>

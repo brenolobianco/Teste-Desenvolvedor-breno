@@ -32,6 +32,8 @@ const router = createRouter({
     },
   ],
 });
+// Verifica se o usuario esta logado, caso exista um token no loçalstorage, é direcionado para a dashboard.
+// Caso nao exista, significa que o usuario nao esta logado, logo nao podera acessar a dashboard, sendo assim redirecinado para o login
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.isAuth)) {
     const user = localStorage.getItem("@UserToken");
