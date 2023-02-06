@@ -1,11 +1,181 @@
 <template>
   <div>
     <div class="listar-contact-box">
-      <h1>listar contato</h1>
-      
+      <h1>lista de contatos</h1>
+
       <ul>
-        <li v-for="contact in contacts" :key="contact.name">
-          <h3>{{ contact.name}}</h3>
+        <h3>Janeiro</h3>
+        <li
+          v-for="contact in contacts"
+          :key="contact.name"
+          v-show="new Date(contact.created_at).getMonth(date) + 1 == 1"
+        >
+          <h3>{{ contact.name }}</h3>
+          <h4>Telefone:{{ contact.contact }}</h4>
+          <h5>Email: {{ contact.email }}</h5>
+          <button class="delete-btn" @click="deleteContact(contact.id)">
+            Deletar
+          </button>
+        </li>
+      </ul>
+      <ul>
+        <h3>Fevereiro</h3>
+        <li
+          v-for="contact in contacts"
+          :key="contact.name"
+          v-show="new Date(contact.created_at).getMonth(date) + 1 == 2"
+        >
+          <h3>{{ contact.name }}</h3>
+          <h4>Telefone:{{ contact.contact }}</h4>
+          <h5>Email: {{ contact.email }}</h5>
+          <button class="delete-btn" @click="deleteContact(contact.id)">
+            Deletar
+          </button>
+        </li>
+      </ul>
+      <ul>
+        <h3>Março</h3>
+        <li
+          v-for="contact in contacts"
+          :key="contact.name"
+          v-show="new Date(contact.created_at).getMonth(date) + 1 == 3"
+        >
+          <h3>{{ contact.name }}</h3>
+          <h4>Telefone:{{ contact.contact }}</h4>
+          <h5>Email: {{ contact.email }}</h5>
+          <button class="delete-btn" @click="deleteContact(contact.id)">
+            Deletar
+          </button>
+        </li>
+      </ul>
+      <ul>
+        <h3>Abril</h3>
+        <li
+          v-for="contact in contacts"
+          :key="contact.name"
+          v-show="new Date(contact.created_at).getMonth(date) + 1 == 4"
+        >
+          <h3>{{ contact.name }}</h3>
+          <h4>Telefone:{{ contact.contact }}</h4>
+          <h5>Email: {{ contact.email }}</h5>
+          <button class="delete-btn" @click="deleteContact(contact.id)">
+            Deletar
+          </button>
+        </li>
+      </ul>
+      <ul>
+        <h3>Maio</h3>
+        <li
+          v-for="contact in contacts"
+          :key="contact.name"
+          v-show="new Date(contact.created_at).getMonth(date) + 1 == 5"
+        >
+          <h3>{{ contact.name }}</h3>
+          <h4>Telefone:{{ contact.contact }}</h4>
+          <h5>Email: {{ contact.email }}</h5>
+          <button class="delete-btn" @click="deleteContact(contact.id)">
+            Deletar
+          </button>
+        </li>
+      </ul>
+      <ul>
+        <h3>Junho</h3>
+        <li
+          v-for="contact in contacts"
+          :key="contact.name"
+          v-show="new Date(contact.created_at).getMonth(date) + 1 == 6"
+        >
+          <h3>{{ contact.name }}</h3>
+          <h4>Telefone:{{ contact.contact }}</h4>
+          <h5>Email: {{ contact.email }}</h5>
+          <button class="delete-btn" @click="deleteContact(contact.id)">
+            Deletar
+          </button>
+        </li>
+      </ul>
+      <ul>
+        <h3>Julho</h3>
+        <li
+          v-for="contact in contacts"
+          :key="contact.name"
+          v-show="new Date(contact.created_at).getMonth(date) + 1 == 7"
+        >
+          <h3>{{ contact.name }}</h3>
+          <h4>Telefone:{{ contact.contact }}</h4>
+          <h5>Email: {{ contact.email }}</h5>
+          <button class="delete-btn" @click="deleteContact(contact.id)">
+            Deletar
+          </button>
+        </li>
+      </ul>
+      <ul>
+        <h3>Agosto</h3>
+        <li
+          v-for="contact in contacts"
+          :key="contact.name"
+          v-show="new Date(contact.created_at).getMonth(date) + 1 == 8"
+        >
+          <h3>{{ contact.name }}</h3>
+          <h4>Telefone:{{ contact.contact }}</h4>
+          <h5>Email: {{ contact.email }}</h5>
+          <button class="delete-btn" @click="deleteContact(contact.id)">
+            Deletar
+          </button>
+        </li>
+      </ul>
+      <ul>
+        <h3>Setembro</h3>
+        <li
+          v-for="contact in contacts"
+          :key="contact.name"
+          v-show="new Date(contact.created_at).getMonth(date) + 1 == 9"
+        >
+          <h3>{{ contact.name }}</h3>
+          <h4>Telefone:{{ contact.contact }}</h4>
+          <h5>Email: {{ contact.email }}</h5>
+          <button class="delete-btn" @click="deleteContact(contact.id)">
+            Deletar
+          </button>
+        </li>
+      </ul>
+      <ul>
+        <h3>Outubro</h3>
+        <li
+          v-for="contact in contacts"
+          :key="contact.name"
+          v-show="new Date(contact.created_at).getMonth(date) + 1 == 10"
+        >
+          <h3>{{ contact.name }}</h3>
+          <h4>Telefone:{{ contact.contact }}</h4>
+          <h5>Email: {{ contact.email }}</h5>
+          <button class="delete-btn" @click="deleteContact(contact.id)">
+            Deletar
+          </button>
+        </li>
+      </ul>
+      <ul>
+        <h3>Novembro</h3>
+        <li
+          v-for="contact in contacts"
+          :key="contact.name"
+          v-show="new Date(contact.created_at).getMonth(date) + 1 == 11"
+        >
+          <h3>{{ contact.name }}</h3>
+          <h4>Telefone:{{ contact.contact }}</h4>
+          <h5>Email: {{ contact.email }}</h5>
+          <button class="delete-btn" @click="deleteContact(contact.id)">
+            Deletar
+          </button>
+        </li>
+      </ul>
+      <ul>
+        <h3>Novembro</h3>
+        <li
+          v-for="contact in contacts"
+          :key="contact.name"
+          v-show="new Date(contact.created_at).getMonth(date) + 1 == 12"
+        >
+          <h3>{{ contact.name }}</h3>
           <h4>Telefone:{{ contact.contact }}</h4>
           <h5>Email: {{ contact.email }}</h5>
           <button class="delete-btn" @click="deleteContact(contact.id)">
@@ -23,11 +193,11 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 450px;
+  width: 50vw;
   height: 450px;
   border-radius: 12px;
   background: rgb(249, 247, 244);
-  overflow: auto;
+  overflow: scroll;
 }
 .delete-btn {
   font-size: 15px;
@@ -46,16 +216,20 @@
   color: black;
   border: 1px solid black;
   border-radius: 8px;
-  height: 150px;
-  width: 350px;
+  height: 50px;
+  width: 45vw;
+  padding: 10px 10px;
   display: flex;
-  gap: 6px;
-  flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 }
 .listar-contact-box ul li h3 {
   font-size: 25px;
+  color: black;
+}
+.listar-contact-box ul h3 {
+  font-size: 25px;
+  color: black;
 }
 .listar-contact-box h4 {
   font-size: 18px;
@@ -67,7 +241,6 @@
 
 <script>
 import axios from "axios";
-
 
 export default {
   name: "ListContact",
@@ -86,23 +259,22 @@ export default {
         .get("http://localhost:8000/api/contacts")
         .then((res) => {
           this.contacts = res.data;
-          console.log(res.data)
+
+          console.log(res.data);
         })
         .catch((error) => {
           console.log(error);
         });
-       
     },
-   
 
     async deleteContact(id) {
-      const token =localStorage.getItem("@UserToken")
+      const token = localStorage.getItem("@UserToken");
       const req = await fetch(`http://localhost:8000/api/contacts/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
-          token: token
+          token: token,
         },
       });
       console.log("Contado deletado");
@@ -110,6 +282,5 @@ export default {
       this.$toast.success(`Contato deletado com sucesso`);
     },
   },
-  
 };
 </script>

@@ -5,11 +5,14 @@
     </header>
   <div class="container">
     
-    <div class="dashboard">
-      <CreateContactForm />
+    <div class="dashboard">]
+      <div class="form-box">
+        <CreateContactForm />
       <EditContactForm />
+      </div>
+      <div class="list-box"> <ListContact /></div>
       
-      <ListContact />
+      
     </div>
   </div>
 </div>
@@ -52,17 +55,18 @@ export default {
 </script>
 <style>
 .container {
-  background: rgb(44, 36, 36);
-
   gap: 35px;
-
   width: 90vw;
   font-weight: normal;
-  height: 100vh;
 }
-
+.form-box{
+  display: flex;
+  margin-top: 200px;
+  gap: 100px;
+}
 .dashboard {
   display: flex;
+  flex-direction:column ;
   gap: 30px;
 }
 

@@ -10,40 +10,37 @@ const router = createRouter({
       path: "/",
       name: "login",
       component: LoginView,
-      meta:{
-        isAuth:false
-      }
+      meta: {
+        isAuth: false,
+      },
     },
     {
       path: "/dashboard",
       name: "dashboard",
       component: DashboardView,
-      meta:{
-        isAuth:true
-      }
-    
+      meta: {
+        isAuth: true,
+      },
     },
     {
       path: "/cadastro",
       name: "cadastro",
       component: CadastroView,
-      meta:{
-        isAuth:false
-      }
-
+      meta: {
+        isAuth: false,
+      },
     },
-  
   ],
 });
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record=>record.meta.isAuth)) {
+  if (to.matched.some((record) => record.meta.isAuth)) {
     const user = localStorage.getItem("@UserToken");
-  
+
     if (!user) {
-      next('/');
-    } 
+      next("/");
+    }
   }
-  next()
+  next();
 });
 
 export default router;
