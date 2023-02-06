@@ -6,10 +6,9 @@
     <div class="container">
       <form class="login-form" method="POST" @submit="login">
         <h2>Login</h2>
-        <label
-          >
-          <input placeholder="Email" v-model="email" type="email" /></label
-        >
+        <label>
+          <input placeholder="Email" v-model="email" type="email"
+        /></label>
         <label>
           <input placeholder="Senha" v-model="password" type="password"
         /></label>
@@ -18,7 +17,40 @@
     </div>
   </div>
 </template>
-
+<script>
+import axios from "axios";
+export default {
+  name: "Login",
+  data() {
+    return {};
+  },
+  methods: {
+    async login(e) {
+      e.preventDefault();
+      const data = {
+        email: this.email,
+        password: this.password,
+      };
+      const dataJson = JSON.stringify(data);
+      axios
+        .post(`http://localhost:8000/api/login`, dataJson, {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        })
+        .then((res) => {
+          localStorage.setItem("@UserToken", res.data.token);
+          this.$toast.success(`Login com sucesso`);
+          this.$router.replace(this.$route.query.redirect || "/dashboard");
+        })
+        .catch((error) => {
+          this.$toast.error(`Login não efetuado, verifique suas informaçoes`);
+        });
+    },
+  },
+};
+</script>
 <style>
 header {
   justify-content: flex-end;
@@ -33,7 +65,6 @@ header {
   flex-direction: column;
   align-items: center;
   width: 95vw;
-
   font-weight: normal;
   height: 100vh;
 }
@@ -48,13 +79,11 @@ header {
   border-radius: 8px;
   background: rgb(249, 247, 244);
 }
-
 .login-form h2 {
   color: black;
   margin-bottom: 40px;
   font-size: 40px;
 }
-
 .login-form input {
   width: 320px;
   height: 55px;
@@ -90,40 +119,3 @@ header {
   align-items: center;
 }
 </style>
-<script>
-export default {
-  name: "Login",
-  data() {
-    return {};
-  },
-  methods: {
-    async login(e) {
-      e.preventDefault();
-      const data = {
-        email: this.email,
-        password: this.password,
-      };
-      const dataJson = JSON.stringify(data);
-      const req = await fetch("http://localhost:8000/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: dataJson,
-      });
-
-      const res = await req.json();
-      // Verifica se o token gerado é valido, caso for, armazena o token no localstorage e redireciona para a dashboard
-      // Caso o token nao for gerado, significa que o login nao foi efetuado, logo um toast de erro de insucesso é mostrado ao usuario
-      if (res.token !== undefined) {
-        localStorage.setItem("@UserToken", res.token);
-        this.$toast.success(`Login com sucesso`);
-        this.$router.replace(this.$route.query.redirect || "/dashboard");
-      } else {
-        this.$toast.error(`Login não efetuado, verifique suas informaçoes`);
-      }
-    },
-  },
-};
-</script>

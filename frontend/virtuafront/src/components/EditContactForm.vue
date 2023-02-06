@@ -1,8 +1,7 @@
 <template>
   <div class="edit-contact-box">
     <form class="edit-contact-form" method="PATCH" @submit="updateContact">
-      <h2>Editar contato</h2>
-
+      <h2>Editar Contato</h2>
       <legend>Selecione o contato</legend>
       <select name="status" class="status" v-model="formEdit">
         <option
@@ -13,18 +12,64 @@
           {{ contact.name }}
         </option>
       </select>
-
       <label><input type="text" placeholder="Nome" v-model="name" /> </label>
       <label
-        ><input placeholder="telefone" type="tel" v-model="contact" />
+        ><input placeholder="Telefone" type="tel" v-model="contact" />
       </label>
-      <label><input type="text" placeholder="foto" v-model="image" /> </label>
+      <label><input type="text" placeholder="Foto" v-model="image" /> </label>
       <label> <input type="email" placeholder="Email" v-model="email" /></label>
       <input class="submit-btn" type="submit" value="Editar Contato!" />Editar
       Contato
     </form>
   </div>
 </template>
+<script>
+import axios from "axios";
+import { ref } from "vue";
+const formEdit = ref("contact.id");
+export default {
+  name: "EditContactForm",
+  data() {
+    return { contacts: {}, formEdit };
+  },
+  created() {
+    this.getContacts();
+  },
+  methods: {
+    async getContacts() {
+      axios.get("http://localhost:8000/api/contacts").then((res) => {
+        this.contacts = res.data;
+      });
+    },
+    async updateContact(e) {
+      e.preventDefault();
+      const id = formEdit.value;
+      const data = {
+        name: this.name,
+        contact: this.contact,
+        email: this.email,
+        image: this.image,
+      };
+      const dataJson = JSON.stringify(data);
+      const token = localStorage.getItem("@UserToken");
+      axios
+        .patch(`http://localhost:8000/api/contacts/${id}`, dataJson, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+            token: token,
+          },
+        })
+        .then(() => {
+          this.$toast.success(`Contato editado com sucesso`);
+        })
+        .catch(() => {
+          this.$toast.error(`Ops! Algo deu errado`);
+        });
+    },
+  },
+};
+</script>
 <style>
 .edit-contact-form legend {
   color: black;
@@ -37,12 +82,9 @@
   align-items: center;
   gap: 15px;
   width: 350px;
-  height: 520px;
+  height: 500px;
   border-radius: 12px;
   background: rgb(249, 247, 244);
-}
-.edit-contact-form select {
-  height: 150px;
 }
 .edit-contact-form label {
   display: flex;
@@ -61,7 +103,7 @@
 .edit-contact-form h2 {
   color: black;
   font-size: 30px;
-  margin-bottom: 10px;
+  margin-top: 0px;
 }
 form .submit-btn {
   border-radius: 8px;
@@ -77,60 +119,3 @@ form .submit-btn {
   align-items: center;
 }
 </style>
-<script>
-import axios from "axios";
-import { ref } from "vue";
-
-const formEdit = ref("contact.id");
-
-export default {
-  name: "EditContactForm",
-  data() {
-    return { contacts: {}, formEdit };
-  },
-  created() {
-    this.getContacts();
-  },
-  methods: {
-    async getContacts() {
-      axios
-        .get("http://localhost:8000/api/contacts")
-        .then((res) => {
-          this.contacts = res.data;
-          console.log(res.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    async updateContact(e) {
-      e.preventDefault();
-
-      const id = formEdit.value;
-      console.log(id);
-
-      const data = {
-        name: this.name,
-        contact: this.contact,
-        email: this.email,
-        image: this.image,
-      };
-      console.log(data);
-      const dataJson = JSON.stringify(data);
-      const token = localStorage.getItem("@UserToken");
-      const req = await fetch(`http://localhost:8000/api/contacts/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-          token: token,
-        },
-        body: dataJson,
-      });
-
-      const res = await req.json();
-      console.log(res);
-    },
-  },
-};
-</script>

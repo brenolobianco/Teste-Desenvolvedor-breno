@@ -2,8 +2,7 @@
   <div>
     <div class="listar-contact-box">
       <h1>Lista de Contatos</h1>
-      <p>Ordenada por mes de criação</p>
-
+      <p>Ordenado por mes de criação</p>
       <ul>
         <h2>Janeiro</h2>
         <li
@@ -11,6 +10,7 @@
           :key="contact.name"
           v-show="new Date(contact.created_at).getMonth(date) + 1 == 1"
         >
+          <img src="img" alt="foto" />
           <h3>{{ contact.name }}</h3>
           <h4>Telefone:{{ contact.contact }}</h4>
           <h5>Email: {{ contact.email }}</h5>
@@ -26,6 +26,7 @@
           :key="contact.name"
           v-show="new Date(contact.created_at).getMonth(date) + 1 == 2"
         >
+          <img src="img" alt="aki" srcset="" />
           <h3>{{ contact.name }}</h3>
           <h4>Telefone:{{ contact.contact }}</h4>
           <h5>Email: {{ contact.email }}</h5>
@@ -187,7 +188,55 @@
     </div>
   </div>
 </template>
-
+<script>
+import axios from "axios";
+export default {
+  name: "ListContact",
+  data() {
+    return {
+      contacts: {},
+    };
+  },
+  mounted() {
+    this.getContacts();
+  },
+  // Observa mudancas no contact, caso ocorra atualiza a lista
+  watch: {
+    contacts: {
+      handler() {
+        this.getContacts();
+      },
+      immediate: true,
+    },
+  },
+  methods: {
+    // Função responsavel por listar todas os contatos cadastrados
+    async getContacts() {
+      axios.get("http://localhost:8000/api/contacts").then((res) => {
+        this.contacts = res.data;
+      });
+    },
+    // Função responsavel por deletar um contato especifico, recebendo o id como parametro.
+    // È passado em seu header o token de us uario gerado no login, concedendo permissao para a requisiçao ser efetuada
+    async deleteContact(id) {
+      const token = localStorage.getItem("@UserToken");
+      try {
+        const req = await fetch(`http://localhost:8000/api/contacts/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+            token: token,
+          },
+        });
+        this.$toast.success(`Contato deletado com sucesso`);
+      } catch (error) {
+        this.$toast.error(`Contato não deletado`);
+      }
+    },
+  },
+};
+</script>
 <style>
 .listar-contact-box {
   display: flex;
@@ -214,7 +263,7 @@
   font-size: 15px;
   color: white;
   cursor: pointer;
-  height: 21px;
+  height: 22px;
   border: 1px solid black;
   background: rgb(218, 138, 18);
 }
@@ -223,12 +272,11 @@
   flex-direction: column;
   gap: 20px;
   width: 100%;
-
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 10px;
-  border-top: 1px solid red;
+  border-top: 1px solid rgb(22, 15, 15);
 }
 .listar-contact-box ul li {
   color: black;
@@ -260,65 +308,13 @@
 .listar-contact-box h5 {
   font-size: 18px;
 }
+@media (max-width: 480px) {
+  .listar-contact-box {
+    width: 350px;
+  }
+  .listar-contact-box ul li {
+    height: 260px;
+    flex-direction: column;
+  }
+}
 </style>
-
-<script>
-import axios from "axios";
-
-export default {
-  name: "ListContact",
-  data() {
-    return {
-      contacts: {},
-    };
-  },
-  mounted() {
-    this.getContacts();
-  },
-// Observa mudancas no contact, caso ocorra atualiza a lista
-  watch: {
-    contacts: {
-      handler() {
-        this.getContacts();
-      },
-
-      immediate: true,
-    },
-  },
- 
-  methods: {
-    // Função responsavel por listar todas os contatos cadastrados
-    async getContacts() {
-      axios
-        .get("http://localhost:8000/api/contacts")
-        .then((res) => {
-          this.contacts = res.data;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    // Função responsavel por deletar um contato especifico, recebendo o id como parametro.
-    // È passado em seu header o token de us uario gerado no login, concedendo permissao para a requisiçao ser efetuada
-    async deleteContact(id) {
-      const token = localStorage.getItem("@UserToken");
-      try {
-        const req = await fetch(`http://localhost:8000/api/contacts/${id}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-            token: token,
-          },
-        });
-       
-        this.$toast.success(`Contato deletado com sucesso`);
-      } catch (error) {
-        this.$toast.error(`Contato não deletado`);
-      }
-    },
-  },
- 
-
-};
-</script>
