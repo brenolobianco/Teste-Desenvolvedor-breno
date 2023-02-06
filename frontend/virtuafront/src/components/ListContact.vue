@@ -275,7 +275,7 @@ export default {
   mounted() {
     this.getContacts();
   },
-
+// Observa mudancas no contact, caso ocorra atualiza a lista
   watch: {
     contacts: {
       handler() {
@@ -311,7 +311,7 @@ export default {
             token: token,
           },
         });
-        const res = await req.json();
+       
         this.$toast.success(`Contato deletado com sucesso`);
       } catch (error) {
         this.$toast.error(`Contato não deletado`);

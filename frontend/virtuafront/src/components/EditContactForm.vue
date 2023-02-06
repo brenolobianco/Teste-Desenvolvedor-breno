@@ -1,13 +1,12 @@
 <template>
   <div class="edit-contact-box">
-    <form class="edit-contact-form">
-      <select
-        name="status"
-        class="status"
-        @submit="updateContact($event, contact.id)"
-      >
+    <form class="edit-contact-form" method="PATCH" @submit="updateContact">
+      <h2>Editar contato</h2>
+
+      <legend>Selecione o contato</legend>
+      <select name="status" class="status" v-model="formEdit">
         <option
-          :value="contact.name"
+          :value="contact.id"
           v-for="contact in contacts"
           :key="contact.id"
         >
@@ -15,36 +14,35 @@
         </option>
       </select>
 
-      <h2>Editar contato</h2>
-      <label
-        ><input type="text" placeholder="Nome" v-model="name" />
-      </label>
+      <label><input type="text" placeholder="Nome" v-model="name" /> </label>
       <label
         ><input placeholder="telefone" type="tel" v-model="contact" />
       </label>
-      <label
-        ><input type="text" placeholder="foto" v-model="foto" />
-      </label>
-      <label
-        > <input type="email" placeholder="Email" v-model="email"
-      /></label>
-
+      <label><input type="text" placeholder="foto" v-model="image" /> </label>
+      <label> <input type="email" placeholder="Email" v-model="email" /></label>
       <input class="submit-btn" type="submit" value="Editar Contato!" />Editar
       Contato
     </form>
   </div>
 </template>
 <style>
+.edit-contact-form legend {
+  color: black;
+  font-size: 25px;
+}
 .edit-contact-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 15px;
   width: 350px;
-  height:500px;
+  height: 520px;
   border-radius: 12px;
   background: rgb(249, 247, 244);
+}
+.edit-contact-form select {
+  height: 150px;
 }
 .edit-contact-form label {
   display: flex;
@@ -81,10 +79,17 @@ form .submit-btn {
 </style>
 <script>
 import axios from "axios";
+import { ref } from "vue";
+
+const formEdit = ref("contact.id");
+
 export default {
   name: "EditContactForm",
   data() {
-    return { contacts: {} };
+    return { contacts: {}, formEdit };
+  },
+  created() {
+    this.getContacts();
   },
   methods: {
     async getContacts() {
@@ -98,23 +103,34 @@ export default {
           console.log(error);
         });
     },
+    async updateContact(e) {
+      e.preventDefault();
 
-    async updateContact(event, id) {
-      const option = event.target.value;
+      const id = formEdit.value;
+      console.log(id);
 
-      const dataJson = JSON.stringify({ status: option });
-      const req = await fetch(`http://localhost:3000/contacts/${id}`, {
+      const data = {
+        name: this.name,
+        contact: this.contact,
+        email: this.email,
+        image: this.image,
+      };
+      console.log(data);
+      const dataJson = JSON.stringify(data);
+      const token = localStorage.getItem("@UserToken");
+      const req = await fetch(`http://localhost:8000/api/contacts/${id}`, {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+          token: token,
+        },
         body: dataJson,
       });
-      auth.setToken(data.token);
+
       const res = await req.json();
       console.log(res);
     },
-  },
-  mounted() {
-    this.getContacts();
   },
 };
 </script>

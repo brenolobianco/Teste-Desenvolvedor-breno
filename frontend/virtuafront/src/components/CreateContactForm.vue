@@ -28,10 +28,11 @@
   align-items: center;
   gap: 20px;
   width: 350px;
-  height: 500px;
+  height: 520px;
   border-radius: 12px;
   background: rgb(249, 247, 244);
 }
+
 .contact-form label {
   display: flex;
   flex-direction: column;
@@ -98,7 +99,7 @@ export default {
         },
         body: dataJson,
       });
-  console.log(req)
+
     
       
     },
