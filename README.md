@@ -81,7 +81,7 @@
 </table>
 
 ### Como rodar a aplicação:
-1. Certifique que o backend esteja funcional(leia readme da pasta backend)
+1. Certifique que o backend esteja funcional( leia readme backend)
 2. Em um terminal separado rode: php artisan serve
 3. run shell:yarn install
 4. run shell: npm run dev
