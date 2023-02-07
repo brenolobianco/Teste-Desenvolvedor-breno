@@ -7,15 +7,15 @@
 - Listagem de contatos cadastrados.
 
 ## Campos Models de contato:
-- nome
-- contato
-- email
-- imagem
+- Nome
+- Contato
+- Email
+- Imagem
 
 ## Campos Models de usuario:
-- name
-- email
-- password
+- Name
+- Email
+- Password
 
 ### Funcionalidades:
 - Cadastro e login de usuário
@@ -83,7 +83,6 @@
 </table>
 
 ### Como rodar a aplicação:
-
 1. Certifique que o backend esteja funcional(leia readme da pasta backend)
 2. Em um terminal separado rode: php artisan serve
 3. run shell:yarn install
