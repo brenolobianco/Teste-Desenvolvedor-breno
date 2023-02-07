@@ -22,6 +22,7 @@
 <td>6</td>
 <td>6</td>
 <td>3</td>
+ <td>1.3</td>
 
  </tr>
 </table>
