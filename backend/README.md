@@ -13,9 +13,9 @@
 - password
 
 ### Funcionalidades:
-- cadastro e login
-- cadastro,ediçao e deleçao de contato
-- listagem de contatos cadastrados
+- Cadastro e login de usuário
+- Cadastro, edição e deleção de contato
+- Listagem de contatos cadastrados.
 
 ## Tecnologias utilizadas:
 <table>
@@ -45,6 +45,6 @@
 
 ## Especificações:
 # Rotas que precisam de autenticação(usuario logado):
-- criaçao de contato
-- atualizaçao de contato
-- deleção de contato
+- Criaçao de contato
+- Atualizaçao de contato
+- Deleção de contato
