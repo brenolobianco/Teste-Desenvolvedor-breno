@@ -1,6 +1,6 @@
-### Projeto Full-Stack de cadastro contatos
+# Projeto Full-Stack de cadastro contatos
 
-## Backend
+# Backend
 ### Funcionalidades:
 - Cadastro e login de usuário
 - Cadastro, edição e deleção de contato
@@ -54,9 +54,9 @@
 - Atualizaçao de contato
 - Deleção de contato
 
-## Frontend
+# Frontend
 
-<h1>Site de cadastro de contatos</h1>
+
 
 ### Funcionalidades:
 - Cadastro e login
