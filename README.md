@@ -1,50 +1,90 @@
-## Flouent
-A DigitCon/VirtuaMax é uma empresa dedicada a produtos de tecnologia cujo projeto principal é a platafrma Flouent, uma plataforma idealizada com o objetivo de unificar ferramentas, funcionalidades e recursos utilizados por pequenas e médias empresas brasileiras.
-Conheça mais sobre o Flouent: www.flouent.com.br
+### Projeto Full-Stack de cadastro contatos
 
-## O Teste
-Você deverá criar um fork deste projeto, e desenvolver em cima do seu fork. Use o README principal do seu repositório para nos contar como foi resolver seu teste, as decisões tomadas, como você organizou e separou seu código, e principalmente as instruções de como rodar seu projeto, afinal a primeira pessoa que irá rodar seu projeto será um programador de nossa equipe, e se você conseguir explicar para ele como fazer isso, você já começou bem! Nós não definimos um tempo limite para resolução deste teste, o que vale para nós e o resultado final e a evolução da criação do projeto até se atingir este resultado, mas acreditamos que este desafio pode ser resolvido em cerca de 8 horas de codificação. 
+## Backend
+### Funcionalidades:
+- Cadastro e login de usuário
+- Cadastro, edição e deleção de contato
+- Listagem de contatos cadastrados.
 
-**Para iniciar, faça um fork deste projeto e deixe seu repositório público.**
+## Campos Models de contato:
+- nome
+- contato
+- email
+- imagem
 
-## As Instruções 
+## Campos Models de usuario:
+- name
+- email
+- password
 
-O desafio consiste na implementação de um sistema de cadastramento básico utilizando o framework PHP Laravel (versão 8), um banco de dados relacional MySQL e o frontend em Vue3. No backend deve ser feito uma API utilizando o Laravel Sanctum como método de autenticação e o frontend em Vue consumindo esta API. No repositório você verá duas pastas, "backend" e "frontend", dessa forma esperamos que o frontend feito em Vue fique em sua respectiva pasta assim como o backend.
+### Funcionalidades:
+- Cadastro e login de usuário
+- Cadastro, edição e deleção de contato
+- Listagem de contatos cadastrados.
 
-Veja as principais estruturas de dados
+## Tecnologias utilizadas:
+<table>
+<tr>
+ <td>PHP</td>
+ <td>Laravel</td>
+ <td>Composer</td>
+  <td>Sanctum</td>
+  <td>MYSql</td>
+</tr>
+<tr>
+<td>8</td>
+<td>8.7</td>
+<td>2.5</td>
+<td>2.15</td>
+<td>8</td>
+ </tr>
+</table>
 
-- Usuário para login no sistema
-- CRUD de contatos (nome, email, telefone, foto)
-- Gerar relatório de contatos adicionados baseado em meses
-- Criar padronização de elemetos de Interface (Componentes reutilizáveis)
+### Como rodar a aplicação:
+1. run shell: composer install(instalar composer)
+2. crie um novo Schema MySql
+3. crie o arquivo .env(copie o .env.example)
+4. configure suas variaveris do banco de dados no .env
+5. run shell: php artisan migrate
+6. run shell: php artisan serve
 
-## O Que Utilizar
+## Especificações:
+# Rotas que precisam de autenticação(usuario logado):
+- Criaçao de contato
+- Atualizaçao de contato
+- Deleção de contato
 
-Esperamos que você faça uso das principais tecnologias embarcadas no Laravel e no Vue. Use sua criatividade e demonstre suas competências! Lembre-se que cada item abaixo poderá avaliado conforme seu nível de experiência.
+## Frontend
 
-- Model,
-- Controller,
-- Requests,
-- Validation,
-- Observer,
-- Console,
-- Routes,
-- Traits,
-- Seeder,
-- Testes Unitários,
-- Testes Funcionais,
-- Vue,
-- VueRouter.
- 
-## Processo Principal
- 
- 1. Usuário deverá poder fazer login no sistema
- 2. Usuário poderá cadastrar um contato
- 3. Usuário poderá editar um contato
- 4. Usuário poderá excluir um contato
- 5. Usuário poderá gerar um relatório básico de contatos adicionados baseado em meses (Ex: Contatos adicionados no mês de Setembro)
+<h1>Site de cadastro de contatos</h1>
 
+### Funcionalidades:
+- Cadastro e login
+- Cadastro, ediçao e deleção de contato;
+- listagem de contatos cadastrados baseado no mes em que foi criado.
 
-#### O que nós não gostaríamos
-- Descobrir que não foi você quem fez seu teste
-- Ver commits grandes, sem muita explicação nas mensagens em seu repositório
+## Tecnologias utilizadas:
+<table>
+<tr>
+ <td>Vue </td>
+ <td>Javascript</td>
+ <td>HTML</td>
+  <td>CSS</td>
+  <td>Axios</td>
+
+</tr>
+<tr>
+<td>3</td>
+<td>6</td>
+<td>6</td>
+<td>3</td>
+
+ </tr>
+</table>
+
+### Como rodar a aplicação:
+
+1. Certifique que o backend esteja funcional(leia readme da pasta backend)
+2. Em um terminal separado rode: php artisan serve
+3. run shell:yarn install
+4. run shell: npm run dev
