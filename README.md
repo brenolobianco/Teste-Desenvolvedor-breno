@@ -48,15 +48,12 @@
 5. run shell: php artisan migrate
 6. run shell: php artisan serve
 
-## Especificações:
-
 ## Rotas que precisam de autenticação(usuario logado):
 - Criaçao de contato
 - Atualizaçao de contato
 - Deleção de contato
 
-# Frontend
-
+# Frontend -----------------------------
 
 ### Funcionalidades:
 - Cadastro e login
