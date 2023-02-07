@@ -1,4 +1,4 @@
-# Projeto Full-Stack de cadastro contatos
+# Projeto Full-Stack de Cadastro de Contatos
 
 # Backend
 ### Funcionalidades:
