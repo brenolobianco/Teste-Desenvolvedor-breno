@@ -3,18 +3,18 @@
 <h1>Site de cadastro de contatos</h1>
 
 ### Funcionalidades:
-- cadastro e login
-- cadastro,ediçao e deleçao de contato
-- listagem de contatos cadastrados baseado no mes em que foi criado
+- Cadastro e login
+- Cadastro, ediçao e deleção de contato;
+- listagem de contatos cadastrados baseado no mes em que foi criado.
 
 ## Tecnologias utilizadas:
-
 <table>
 <tr>
  <td>Vue </td>
  <td>Javascript</td>
  <td>HTML</td>
   <td>CSS</td>
+  <td>Axios</td>
 
 </tr>
 <tr>
@@ -29,14 +29,9 @@
 ### Como rodar a aplicação:
 
 1. Certifique que o backend esteja funcional(leia readme da pasta backend)
-2. em um terminal separado rode: php artisan serve
+2. Em um terminal separado rode: php artisan serve
 3. run shell:yarn install
 4. run shell: npm run dev
 
-## Especificações:
 
-# Rotas que precisam de autenticação(usuario logado):
 
-- criaçao de contato
-- atualizaçao de contato
-- deleção de contato
