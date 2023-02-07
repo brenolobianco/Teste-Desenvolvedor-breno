@@ -53,7 +53,7 @@
 - Atualizaçao de contato
 - Deleção de contato
 
-# Frontend -----------------------------
+# Frontend 
 
 ### Funcionalidades:
 - Cadastro e login
