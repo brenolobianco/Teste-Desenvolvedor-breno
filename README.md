@@ -17,10 +17,6 @@
 - Email
 - Password
 
-### Funcionalidades:
-- Cadastro e login de usuário
-- Cadastro, edição e deleção de contato
-- Listagem de contatos cadastrados.
 
 ## Tecnologias utilizadas:
 <table>
